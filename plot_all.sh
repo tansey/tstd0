@@ -1,0 +1,8 @@
+python plot_results.py 2_bandits/results/ "Inverted Grid World Performance"
+python plot_results.py 3_bandits/results/ "Inverted Grid World Performance"
+python plot_results.py 5_bandits/results/ "Inverted Grid World Performance"
+python plot_results.py 10_bandits/results/ "Inverted Grid World Performance"
+python plot_results.py 20_bandits/results/ "Inverted Grid World Performance"
+python plot_results.py 50_bandits/results/ "Inverted Grid World Performance"
+python plot_results.py 100_bandits/results/ "Inverted Grid World Performance"
+python plot_summary.py "Inverted Grid World Performance"

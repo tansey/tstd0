@@ -11,9 +11,9 @@ if __name__ == "__main__":
     outfile = sys.argv[1]
     bandits = int(sys.argv[2])
     episodes = int(sys.argv[3])
-    world = GridWorld()
-    agents = [qlearning.QAgent(bandits), tstd.TSTDAgent(bandits)]
-    series = ['Episodes', 'Q-Learning', 'TSTD(0)']
+    world = GridWorld(num_bandits = bandits)
+    agents = [tstd.TSTDAgent(bandits), qlearning.QAgent(bandits)]
+    series = ['Episodes', 'TSTD(0)', 'Q-Learning']
     row = [0 for _ in range(len(agents)+1)]
     f = open(outfile, 'wb')
     writer = csv.writer(f)
@@ -24,11 +24,14 @@ if __name__ == "__main__":
         row[0] = ep + 1
         for i,agent in enumerate(agents):
             world.agent = agent
-            row[i+1] = world.play_episode()
+            score = world.play_episode()
+            if i == 1:
+                prev_epsilon = agent.epsilon
+                agent.epsilon = 0
+                score = world.play_episode()
+                agent.epsilon = prev_epsilon
+            row[i+1] = score
         writer.writerow(row)
     f.flush()
     f.close()
-    print '**** Q-Values for Q-Learning ****'
-    print_q_values(agents[0].q)
-    print '**** State values for TSTD ****'
-    print_state_values(agents[1].v)
+    print_state_values(agents[1].visits)

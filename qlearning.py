@@ -20,20 +20,23 @@ class QAgent(Agent):
 
     def build_state_action_table(self):
         self.q = {}
+        self.visits = {}
         for sa in product(product(range(GRID_WIDTH), range(GRID_HEIGHT)), range(self.num_bandits)):
-            self.q[sa] = GOAL_REWARD
+            self.q[sa] = 0
+        for s in product(range(GRID_WIDTH), range(GRID_HEIGHT)):
+            self.visits[s] = 0
 
     def episode_starting(self, state):
         self.state = state
         
     def episode_over(self):
         if self.update:
-            self.q[(self.prev_state,self.prev_action)] = (1.0 - self.alpha) * self.q[(self.prev_state,self.prev_action)] + self.alpha * self.prev_reward
+            self.update_q()
         self.episodes += 1
         if self.decrease_alpha:
             self.alpha = min(self.starting_alpha, 20.0 / float(self.episodes+1))
         if self.decrease_epsilon:
-            self.epsilon = min(self.starting_epsilon, 20.0 / float(self.episodes+1))
+            self.epsilon = min(self.starting_epsilon, 100.0 / float(self.episodes+1))
 
     def get_bandit(self):
         if random.random() < self.epsilon:
@@ -60,13 +63,14 @@ class QAgent(Agent):
         if self.update:
             self.update_q()
         Agent.set_state(self, state)
+        self.visits[state] += 1
 
     def update_q(self):
-        self.q[(self.prev_state,self.prev_action)] = (1.0 - self.alpha) * self.q[(self.prev_state,self.prev_action)] + self.alpha * (self.prev_reward + self.gamma * self.greedy()[1])
+        self.q[(self.prev_state,self.prev_action)] += self.alpha * (self.prev_reward + self.gamma * self.greedy()[1] - self.q[(self.prev_state,self.prev_action)])
 
     def observe_action(self, action):
         """
-        Note that Q-learning does not utilize the observed action taken by the bandits. It only optimizes directly.
+        Q-learning does not utilize the observed action taken by the bandits. It only optimizes directly.
         """
         self.prev_move = action
 
