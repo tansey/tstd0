@@ -6,7 +6,7 @@ class QAgent(Agent):
     """
     A Q-Learning agent with optimistic initialization.
     """
-    def __init__(self, num_bandits, epsilon = 0.2, decrease_epsilon = True, alpha = 1, decrease_alpha = True, gamma = 1):
+    def __init__(self, num_bandits, epsilon = 0.1, decrease_epsilon = False, alpha = 0.05, decrease_alpha = False, gamma = 1):
         Agent.__init__(self, num_bandits)
         self.build_state_action_table()
         self.epsilon = epsilon

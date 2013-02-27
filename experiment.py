@@ -12,6 +12,7 @@ if __name__ == "__main__":
     bandits = int(sys.argv[2])
     episodes = int(sys.argv[3])
     world = GridWorld(num_bandits = bandits)
+    """
     # TESTING WITH DETERMINISTIC WORLD
     world.bandits[UP].first = 1
     world.bandits[UP].second = 0
@@ -19,6 +20,7 @@ if __name__ == "__main__":
     world.bandits[RIGHT].second = 1
     world.bandits[DOWN].first = 0
     world.bandits[DOWN].second = 0
+    """
     agents = [tstd.TSTDAgent(bandits), qlearning.QAgent(bandits)]
     series = ['Episodes', 'TSTD(0)', 'Q-Learning']
     row = [0 for _ in range(len(agents)+1)]
