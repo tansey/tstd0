@@ -27,10 +27,11 @@ class TSTDAgent(Agent):
     def build_value_table(self):
         self.v = {}
         for state in product(range(GRID_WIDTH), range(GRID_HEIGHT)):
-            self.v[state] = GOAL_REWARD
+            self.v[state] = 0
 
     def episode_starting(self, state):
         self.state = state
+        self.prev_state = None
         
     def episode_over(self):
         self.episodes += 1

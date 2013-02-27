@@ -56,6 +56,8 @@ UP = 0
 RIGHT = 1
 DOWN = 2
 
+ACTION_NAMES = ['Up', 'Right', 'Down']
+
 GRID_WIDTH = 4
 GRID_HEIGHT = 3
 START = (0, int(GRID_HEIGHT / 2))
