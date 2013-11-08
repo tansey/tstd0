@@ -19,15 +19,25 @@ down, and right. The agent starts at the left-most center square and the
 goal state is the right-most center square.
 
 MAB Grid World
+
 \- -4 - -4 - -4 --------
+
 |  ^ |  ^ |  ^-1|     |
+
 |    |    |   ->|     |
+
 \-----------------------
+
 |    |    |   -1| +10 |
+
 |    |    |   ->|     |
+
 \-----------------------
+
 |    |    |   +3|     |
+
 |    |    |   ->|     |
+
 \-----------------------
 
 K = 10
