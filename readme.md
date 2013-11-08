@@ -3,6 +3,9 @@ Thompson-Sampling + TD(0)
 
 Optimal action selection in the Multi-Armed Bandit Grid World.
 
+The Multi-Armed Bandit (MAB) Grid World
+=======================================
+
 In the MAB Grid World, the agent's goal is to learn an optimal policy for
 navigating an episodic grid. The twist here is that the agent has full
 knowledge of the reward and transition functions, but its actions are 
@@ -23,6 +26,9 @@ See `gridworld.py` for an ASCII depiction of the grid world.
 Specific bandit distributions are randomly created at the start of every
 experiment. The same set of distributions is used for both TSTD and Q-Learning
 experiments.
+
+TSTD
+====
 
 The approach we take here is to use a generalized Thompson Sampling approach
 combined with a simple TD(0) method. We keep the TD method as simple as
