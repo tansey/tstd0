@@ -18,29 +18,8 @@ Specifically to this world, there are three categories of actions: up,
 down, and right. The agent starts at the left-most center square and the
 goal state is the right-most center square.
 
-MAB Grid World
+See `gridworld.py` for an ASCII depiction of the grid world.
 
-\- -4 - -4 - -4 --------
-
-|  ^ |  ^ |  ^-1|     |
-
-|    |    |   ->|     |
-
-\-----------------------
-
-|    |    |   -1| +10 |
-
-|    |    |   ->|     |
-
-\-----------------------
-
-|    |    |   +3|     |
-
-|    |    |   ->|     |
-
-\-----------------------
-
-K = 10
 Specific bandit distributions are randomly created at the start of every
 experiment. The same set of distributions is used for both TSTD and Q-Learning
 experiments.
